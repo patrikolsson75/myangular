@@ -1,0 +1,9 @@
+angular.module('myangularServices', ['ngResource']).
+        factory('Event', function ($resource) {
+            return $resource('events/:eventId', {eventId:'@id'},{
+                query:{method:'GET', isArray:true},
+                update:{method:'PUT'},
+                create: { method: 'POST'},
+                delete: { method: 'DELETE'}
+            });
+        });

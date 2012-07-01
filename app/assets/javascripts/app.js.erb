@@ -1,0 +1,8 @@
+angular.module('myangular', ['myangularServices']).
+        config(['$routeProvider', function($routeProvider) {
+    $routeProvider.
+            when('/events', {templateUrl: '<%= asset_path("events.html") %>',   controller: EventListCtrl}).
+            when('/events/:eventId/edit', {templateUrl: '<%= asset_path("event.html") %>', controller: EventEditCtrl}).
+            when('/events/new', {templateUrl: '<%= asset_path("event.html") %>', controller: EventNewCtrl}).
+            otherwise({redirectTo: '/events'});
+}]);

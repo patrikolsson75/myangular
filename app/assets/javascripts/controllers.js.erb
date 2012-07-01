@@ -1,0 +1,54 @@
+function EventListCtrl($scope, $location, Event) {
+    $scope.events = Event.query();
+
+    $scope.createEvent = function(newEvent) {
+        var new_event = new Event(newEvent);
+        new_event.$create(function() {
+            $scope.events.push(new_event);
+        }, function (error) {
+            alert('error');
+        });
+    }
+
+    $scope.showNewEventForm = function() {
+        this.displayNewEventForm = true;
+    }
+
+    $scope.selectEvent = function(event) {
+        $location.path('events/' + event.id + '/edit');
+    }
+}
+
+EventListCtrl.$inject = ['$scope', '$location', 'Event'];
+
+function EventEditCtrl($scope, $routeParams, $location, Event) {
+    $scope.event = Event.get({eventId: $routeParams.eventId}, function(event) {
+
+    });
+
+    $scope.save = function(event) {
+        event.$update(function(){
+            $location.path('events');
+        });
+    }
+
+    $scope.delete = function(event) {
+        event.$delete(function () {
+            $location.path('events');
+        });
+    }
+}
+
+EventEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'Event'];
+
+function EventNewCtrl($scope, $routeParams, $location, Event) {
+    $scope.event = new Event();
+
+    $scope.save = function(event) {
+        event.$create(function(){
+            $location.path('events');
+        });
+    }
+}
+
+EventNewCtrl.$inject = ['$scope', '$routeParams', '$location', 'Event'];

@@ -1,0 +1,31 @@
+<h3 ng-show="event.id">Edit</h3>
+<h3 ng-hide="event.id">New</h3>
+<form name="form" novalidate class="well form-horizontal'">
+    <fieldset>
+        <div class="control-group">
+            <label for="name" class="control-label">Namn</label>
+
+            <div class="controls">
+                <input class="text_field" id="name" type="text" ng-model='event.name' required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="start" class="control-label">Start</label>
+
+            <div class="controls">
+                <input class="text_field" id="start" type="text" ng-model='event.start_at' required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="end" class="control-label">Slut</label>
+
+            <div class="controls">
+                <input class="text_field" id="end" type="text" ng-model='event.end_at' required/>
+            </div>
+        </div>
+
+            <button class="btn btn-primary" ng-disabled="form.$invalid" ng-click="save(event)">Save</button>
+            <button class="btn btn-danger" ng-show="event.id" ng-click="delete(event)"><i class="icon-trash icon-white"></i> Delete</button>
+
+    </fieldset>
+</form>
